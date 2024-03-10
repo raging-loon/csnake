@@ -78,8 +78,8 @@ void Game::clear()
     assert(gameWindow != nullptr);
     
     ::clear();
-    wclear(gameWindow);
-    wclear(scoreWindow);
+    werase(gameWindow);
+    werase(scoreWindow);
 }
 
 void Game::updateGameWindow()
@@ -87,7 +87,6 @@ void Game::updateGameWindow()
     assert(gameWindow != nullptr);
     
     wborder(gameWindow, '|','|','-','-',0,0,0,0);
-    refresh();
     wrefresh(gameWindow);
 
 }
@@ -101,7 +100,7 @@ void Game::updateScoreWindow()
 
 void Game::printLoseMessage()
 {
-    wclear(scoreWindow);
+    werase(scoreWindow);
     wprintw(scoreWindow, "Press Y to restart or N to exist");
     wrefresh(scoreWindow);
 }
