@@ -13,6 +13,8 @@ struct SnekNode
     SnekNode*       prev;
 };
 
+
+// Linked list of SnekNodes
 class Snek
 {
 public:
@@ -28,8 +30,16 @@ public:
     Snek(int x = 0, int y = 0);
     ~Snek();
 
+
     void            addSegment(int x = 0, int y = 0);
 
+    /**
+     * Update each element based on the element previous element
+     * Does not update the head element 
+     * m_head->next is updated based on last_head_loc_*
+     * So when m_head is updated, head->next can be updated based
+     * on where m_head was
+    */
     void            updatePositions();
 
     SnekNode* const getHead() const { return m_head; }
@@ -46,9 +56,6 @@ private:
     SnekNode*       m_head;
     SnekNode*       m_tail;
     unsigned int    m_size;
-
-    // simply datastructure to store our segments
-    std::vector<SnekNode> m_segmentList;
 
     // Used when the head moves, keeps its last location
     // so head->next can be accurately updated

@@ -3,25 +3,23 @@
 
 Snek::Snek(int x, int y)
 {
-    m_segmentList.push_back({x, y, nullptr, nullptr});
+    m_head = new SnekNode { x, y, nullptr, nullptr};
 
-    m_head = new SnekNode;
-
-    *m_head = 
-    {
-        .x = x,
-        .y = y,
-        .next = nullptr,
-        .prev = nullptr
-    };
-    
     m_tail = m_head;
     m_size = 1;
 }
 
 Snek::~Snek()
 {
+    SnekNode* tail = m_tail;
 
+    while(tail)
+    {
+        SnekNode* prev = tail->prev;
+        delete tail;
+
+        tail = prev;
+    }
 }
 
 void Snek::addSegment(int x, int y)

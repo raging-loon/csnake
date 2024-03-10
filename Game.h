@@ -14,7 +14,7 @@ enum class GameMode
 
 // singleton struct for holding global game data
 // JBOD
-struct GameData
+struct Game
 {
 
 
@@ -40,25 +40,29 @@ struct GameData
 
     void        draw(int x, int y, const char* c);
     void        updateGameWindow();
-    void        updateScoreWindow();
+    void        printLoseMessage();
     int         getchar();
     void        clear();
+    void        updateScoreWindow();
 
+    void        renderSnek(const char* snekBody, const char* snekHead);
+    
+    void        resetSnek();
 
     static int  getRandomNumber(int min, int max);
-    static GameData& get()
+    static Game& get()
     {
-        static GameData gd;
+        static Game gd;
         return gd;
     }
 
 private:
     // private constructor
-    GameData(){}
+    Game(){}
     // get rid of copy-assignment
-    void operator=(const GameData&) = delete;
+    void operator=(const Game&) = delete;
     // get rid of copy constructor
-    GameData(const GameData& ) = delete;
+    Game(const Game& ) = delete;
 
 
 };  
